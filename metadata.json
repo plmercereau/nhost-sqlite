@@ -1,0 +1,71 @@
+{
+    "type": "replace_metadata",
+    "args": {
+        "metadata": {
+            "version": 3,
+            "backend_configs": {
+                "dataconnector": {
+                    "reference": {
+                        "uri": "http://host.docker.internal:1337/v1/functions/sqlite"
+                    }
+                }
+            },
+            "sources": [
+                {
+                    "name": "chinook",
+                    "kind": "reference",
+                    "tables": [
+                        {
+                            "table": [
+                                "Album"
+                            ],
+                            "object_relationships": [
+                                {
+                                    "name": "Artist",
+                                    "using": {
+                                        "manual_configuration": {
+                                            "remote_table": [
+                                                "Artist"
+                                            ],
+                                            "column_mapping": {
+                                                "ArtistId": "ArtistId"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "table": [
+                                "Artist"
+                            ],
+                            "array_relationships": [
+                                {
+                                    "name": "Album",
+                                    "using": {
+                                        "manual_configuration": {
+                                            "remote_table": [
+                                                "Album"
+                                            ],
+                                            "column_mapping": {
+                                                "ArtistId": "ArtistId"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    ],
+                    "configuration": {
+                        "value": {
+                            "tables": [
+                                "Artist",
+                                "Album"
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}
