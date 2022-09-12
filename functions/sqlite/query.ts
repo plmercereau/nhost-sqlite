@@ -586,7 +586,7 @@ function query(request: QueryRequest): string {
 function output(rows: any): QueryResponse {
   // TODO - This is a hack to get around the fact that the rows are returned as a string.
   return {
-    rows: JSON.parse(rows[0].data).rows.map(r => JSON.parse(r))
+    rows: JSON.parse(rows[0].data).rows?.map(r => JSON.parse(r))
   }
 }
 
